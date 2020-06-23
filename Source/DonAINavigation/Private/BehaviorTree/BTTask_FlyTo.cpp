@@ -218,7 +218,7 @@ void UBTTask_FlyTo::Pathfinding_OnFinish(const FDoNNavigationQueryData& Data)
 	
 	if (compareStatus && num <= 0)
 	{
-		if (bTeleportToDestinationUponFailure && ownerComp)
+		if (bTeleportToDestinationUponFailure && ownerComp.IsValid())
 		{
 			TeleportAndExit(*ownerComp, false);
 			myMemory->QueryResults.QueryStatus = EDonNavigationQueryStatus::Success;
@@ -235,7 +235,7 @@ void UBTTask_FlyTo::Pathfinding_OnFinish(const FDoNNavigationQueryData& Data)
 	// Inform pawn owner that we're about to start locomotion!
 	if (myMemory->bIsANavigator)
 	{
-		if (!ownerComp)
+		if (ownerComp.IsValid())
 			return;
 
 		APawn* pawn = ownerComp->GetAIOwner()->GetPawn();
