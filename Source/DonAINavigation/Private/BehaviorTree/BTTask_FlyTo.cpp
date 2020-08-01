@@ -195,13 +195,7 @@ FBT_FlyToTarget* UBTTask_FlyTo::TaskMemoryFromGenericPayload(void* GenericPayloa
 }
 
 void UBTTask_FlyTo::Pathfinding_OnFinish(const FDoNNavigationQueryData& Data)
-{	
-	if (Data.VolumeSolution.Num() <= 0)
-	{
-		UE_LOG(DoNNavigationLog, Log, TEXT("Found empty VolumeSolution in Fly To node. Aborting task..."));
-		return;
-	}
-	
+{
 	auto myMemory = TaskMemoryFromGenericPayload(Data.QueryParams.CustomDelegatePayload);
 	if (myMemory == nullptr || myMemory->Metadata.OwnerComp == nullptr)
 		return;
